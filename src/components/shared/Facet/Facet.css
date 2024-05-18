@@ -1,0 +1,48 @@
+.node-name {
+    font-size: 18px;
+    margin-left: 10px;
+    cursor: pointer;
+    opacity: 0.8;
+}
+
+.select-all-label{
+    margin-left: 10px;
+}
+
+.node-name:hover {
+    opacity: 1;
+    color: rgb(245, 92, 71);
+}
+
+.last-node .node-name {
+    cursor: auto;
+    color: #333;
+}
+
+.facet-container {
+    margin: 30px;
+    padding: 20px 25px 20px 20px;
+    display: inline-block;
+    min-width: 230px;
+    max-height: 700px;
+    overflow-y: scroll;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px 0px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 4px;
+}
+
+@media (max-width: 768px) {
+    .facet-container {
+        width: 100%;
+        margin: 10px 0;
+        max-height: 400px;
+    }
+
+}
+
+@media (max-width: 480px) {
+    .facet-container {
+        padding: 15px 0;
+        max-height: 300px;
+    }
+}
