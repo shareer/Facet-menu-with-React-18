@@ -1,20 +1,22 @@
 import { useState, useCallback } from 'react';
-import Facet from '../shared/Facet/Facet';
-import { data } from '../../mock/data';
 import { TreeNodeType } from '../../types/types';
 import Header from '../shared/Header/Header';
-import './Home.css'
+import Facet from '../shared/Facet/Facet';
+import { data } from '../../mock/data';
+import './Home.css';
 
 function Home() {
   const [selectedLeafNodes, setSelectedLeafNodes] = useState<TreeNodeType[]>([]);
 
-  const handleSelectedLeafNodesChange = useCallback((newSelectedLeafNodes: TreeNodeType[]) => {
-    // Check if the new selected leaf nodes are different from the current state
-    const newIds = newSelectedLeafNodes.map(node => node.id).sort().join(',');
+  /**
+   * Handles the change in selected categories.
+   */
+  const handleSelectedCategoryChange = useCallback((newSelectedItem: TreeNodeType[]) => {
+    const newIds = newSelectedItem.map(node => node.id).sort().join(',');
     const currentIds = selectedLeafNodes.map(node => node.id).sort().join(',');
 
     if (newIds !== currentIds) {
-      setSelectedLeafNodes(newSelectedLeafNodes);
+      setSelectedLeafNodes(newSelectedItem);
     }
   }, [selectedLeafNodes]);
 
@@ -23,15 +25,21 @@ function Home() {
       <Header />
       <div className="home-container">
         <div>
-        <Facet data={data.categories as TreeNodeType[]} onSelectedLeafNodesChange={handleSelectedLeafNodesChange} />
+          <Facet
+            data={data.categories as TreeNodeType[]}
+            onSelectedCategoryChange={handleSelectedCategoryChange}
+            aria-label="Category Selection"
+          />
         </div>
         <div className="selected-items-container">
-          {selectedLeafNodes.length >0 && <h3>Selected Catgories:</h3>}
-          <ul>
+          {selectedLeafNodes.length > 0 && <h3>Categories Selected:</h3>}
+          <ul aria-live="polite">
             {selectedLeafNodes.map(node => (
-              <div className="card" key={node.id}>
-              <li>{node.name}</li>
-              </div>
+              <li key={node.id}>
+                <div className="card">
+                  {node.name}
+                </div>
+              </li>
             ))}
           </ul>
         </div>

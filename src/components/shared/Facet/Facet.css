@@ -2,10 +2,10 @@
     font-size: 18px;
     margin-left: 10px;
     cursor: pointer;
-    opacity: 0.8;
+    vertical-align: text-top;
 }
 
-.select-all-label{
+.select-all-label {
     margin-left: 10px;
 }
 
@@ -27,17 +27,65 @@
     max-height: 700px;
     overflow-y: scroll;
     box-shadow: rgba(0, 0, 0, 0.15) 0px 2px 8px 0px;
+    border: 1px solid rgb(204, 204, 204);
     background-color: rgb(255, 255, 255);
-    border-radius: 4px;
+    border-radius: 8px;
 }
+
+/* CSS for the custom checkbox */
+.checkbox-custom {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+    display: inline-block !important;
+    vertical-align: middle;
+    width: 16px;
+    height: 16px;
+    position: relative;
+    border: none;
+    border: 1px solid #333;
+    background-color: #fff;
+}
+
+.checkbox-custom:checked {
+    background-color: #fff;
+}
+
+
+.checkbox-custom::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 6px;
+    height: 6px;
+    background-color: #333;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+}
+
+.checkbox-custom:checked::before {
+    opacity: 1;
+}
+
+.select-all input[type="checkbox"] {
+    display: none;
+}
+
+.select-all label {
+    cursor: pointer;
+}
+
 
 @media (max-width: 768px) {
     .facet-container {
         width: 100%;
         margin: 10px 0;
         max-height: 400px;
+        max-width: 93%;
     }
-
 }
 
 @media (max-width: 480px) {
