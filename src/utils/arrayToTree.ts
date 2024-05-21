@@ -15,6 +15,5 @@ export const arrayToTree = (data: TreeNodeType[], rootId: number): TreeNodeType[
       children[parent].push(item);
     }
   });
-
   return tree;
 };

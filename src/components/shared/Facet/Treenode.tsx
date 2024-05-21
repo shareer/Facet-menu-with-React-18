@@ -9,6 +9,9 @@ export const TreeNode = React.memo(({ node, onSelect, checkedNodes }: { node: Tr
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const checked = e.target.checked;
     onSelect(node, checked);
+    // if (!isLastNode && checked) {
+    //   toggleExpand();
+    // }
   };
 
   const toggleExpand = () => {
