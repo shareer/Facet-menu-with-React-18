@@ -1,6 +1,10 @@
 import { TreeNodeType } from "../types/types";
 
-export const arrayToTree = (data: TreeNodeType[], rootId: number): TreeNodeType[] => {
+
+/**
+ * Converts a flat array of nodes into a hierarchical tree structure.
+ **/
+export const convertArrayToTree = (data: TreeNodeType[], rootId: number): TreeNodeType[] => {
   const tree: TreeNodeType[] = [];
   const children: { [key: number]: TreeNodeType[] } = {};
   data.forEach(item => {

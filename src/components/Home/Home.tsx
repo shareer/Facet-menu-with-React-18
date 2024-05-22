@@ -6,17 +6,17 @@ import { data } from '../../mock/data';
 import './Home.css';
 
 function Home() {
-  const [selectedNodes, setselectedNodes] = useState<TreeNodeType[]>([]);
+  const [selectedNodes, setSelectedNodes] = useState<TreeNodeType[]>([]);
 
   /**
    * Handles the change in selected categories.
    */
   const handleSelectedCategoryChange = useCallback((newSelectedItem: TreeNodeType[]) => {
-    const newIds = newSelectedItem.map(node => node.id).sort().join(',');
-    const currentIds = selectedNodes.map(node => node.id).sort().join(',');
+    const newIds = newSelectedItem.map(node => node.id).join(',');
+    const currentIds = selectedNodes.map(node => node.id).join(',');
 
     if (newIds !== currentIds) {
-      setselectedNodes(newSelectedItem);
+      setSelectedNodes(newSelectedItem);
     }
   }, [selectedNodes]);
 
@@ -26,7 +26,7 @@ function Home() {
       <div className="home-container">
         <div aria-label="Category Selection" data-testid="facet">
           <Facet
-            data={data.categories as TreeNodeType[]}
+            data={data.categories}
             onSelectedCategoryChange={handleSelectedCategoryChange}
           />
         </div>

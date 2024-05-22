@@ -1,20 +1,21 @@
-import { useCallback, useMemo, useState, useEffect, useRef } from 'react';
-import { TreeNodeType } from '../../../types/types';
-import { arrayToTree } from '../../../utils/arrayToTree';
+import { useCallback, useMemo, useState, useEffect } from 'react';
+import { CheckedNodeType, FacetProps, TreeNodeType } from '../../../types/types';
+import { convertArrayToTree } from '../../../utils/utils';
 import { TreeNode } from './TreeNode';
 import './Facet.css'
 
-interface FacetProps {
-  data: TreeNodeType[];
-  onSelectedCategoryChange: (selectedNodes: TreeNodeType[]) => void;
-}
-
 const Facet = ({ data, onSelectedCategoryChange }: FacetProps) => {
-  const [checkedNodes, setCheckedNodes] = useState<{ [key: string]: boolean }>({});
-  const treeNodes: TreeNodeType[] = useMemo(() => arrayToTree(data, 0), [data]);
-  const checkedNodesRef = useRef(checkedNodes);
-  const isAllChecked = Object.values(checkedNodes).length > 0 && Object.values(checkedNodes).every(val => val);
   
+  const initialNodeStatus: CheckedNodeType = useMemo(() => 
+    data.reduce((acc, item) => {
+      acc[item.id] = false;
+      return acc;
+    }, {} as CheckedNodeType), [data]);
+
+  const [checkedNodes, setCheckedNodes] = useState<{ [key: string]: boolean }>(initialNodeStatus);
+  const treeNodes: TreeNodeType[] = useMemo(() => convertArrayToTree(data, 0), [data]);
+  const isAllChecked = Object.values(checkedNodes).length > 0 && Object.values(checkedNodes).every(val => val);
+
 
   /**
     * Recursively updates the selection status of a node and its children.
@@ -34,7 +35,7 @@ const Facet = ({ data, onSelectedCategoryChange }: FacetProps) => {
       updateNodeSelection(node, checked, updatedCheckedNodes);
       return updatedCheckedNodes;
     });
-  }, []);
+  }, [updateNodeSelection]);
 
 
   const handleSelectAll = useCallback((checked: boolean) => {
@@ -43,10 +44,9 @@ const Facet = ({ data, onSelectedCategoryChange }: FacetProps) => {
       treeNodes.forEach(node => {
         updateNodeSelection(node, checked, updatedCheckedNodes);
       });
-      checkedNodesRef.current = updatedCheckedNodes;
       return updatedCheckedNodes;
     });
-  }, [treeNodes]);
+  }, [treeNodes, updateNodeSelection]);
 
 
   useEffect(() => {
@@ -57,7 +57,6 @@ const Facet = ({ data, onSelectedCategoryChange }: FacetProps) => {
 
     onSelectedCategoryChange(selectedNodes);
   }, [checkedNodes, data, onSelectedCategoryChange]);
-
 
   return (
     <div className='facet-container'>

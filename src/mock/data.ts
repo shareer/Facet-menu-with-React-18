@@ -315,11 +315,11 @@ export const data = {
             "parent": 21251,
             "name": "Shoes"
          },
-         {
-            "id": 21252,
-            "parent": 14449,
-            "name": "Shirts"
-         },
+         // {
+         //    "id": 21252,
+         //    "parent": 14449,
+         //    "name": "Shirts"
+         // },
          {
             "id": 14126,
             "parent": 0,
