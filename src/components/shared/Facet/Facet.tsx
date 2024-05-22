@@ -1,8 +1,8 @@
 import { useCallback, useMemo, useState, useEffect } from 'react';
 import { CheckedNodeType, FacetProps, TreeNodeType } from '../../../types/types';
 import { convertArrayToTree } from '../../../utils/utils';
-import { TreeNode } from './TreeNode';
 import './Facet.css'
+import { TreeNode } from './TreeNode';
 
 const Facet = ({ data, onSelectedCategoryChange }: FacetProps) => {
   
