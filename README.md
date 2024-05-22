@@ -5,7 +5,7 @@ This project is a React demonstration showcasing the reusable Facet component. T
 
 ## Development server
 
-Run `npm start` for a dev server. Navigate to `http://localhost:3000/`. 
+After cloning the project in the local machine run `npm install` to install the dependencies and followed by `npm start` to run server locally. Navigate to `http://localhost:3000/`. 
 
 ## Framework/Libraries Used
 
