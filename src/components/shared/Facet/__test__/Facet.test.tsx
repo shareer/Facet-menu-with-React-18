@@ -37,20 +37,6 @@ describe('Facet component', () => {
     expect(screen.getByText('Category 2')).toBeInTheDocument();
   });
 
-  // it('selects and unselects a node', () => {
-  //   render(<Facet data={mockData} onSelectedCategoryChange={mockOnSelectedCategoryChange} />);
-    
-  //   const category1Checkbox = screen.getByLabelText('Category 1');
-  //   fireEvent.click(category1Checkbox);
-
-  //   expect(mockOnSelectedCategoryChange).toHaveBeenCalledWith(expect.arrayContaining([
-  //     { id: 2, parent: 1, name: 'Subcategory 1-1', children: [] },
-  //   ]));
-
-  //   fireEvent.click(category1Checkbox);
-
-  //   expect(mockOnSelectedCategoryChange).toHaveBeenCalledWith([]);
-  // });
   it('selects and unselects all nodes', () => {
     render(<Facet data={mockData} onSelectedCategoryChange={mockOnSelectedCategoryChange} />);
   

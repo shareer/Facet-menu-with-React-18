@@ -20,13 +20,14 @@ const Facet = ({ data, onSelectedCategoryChange }: FacetProps) => {
   /**
     * Recursively updates the selection status of a node and its children.
    */
-  const updateNodeSelection = (node: TreeNodeType, checked: boolean, updatedCheckedNodes: { [key: string]: boolean }) => {
+  const updateNodeSelection = useCallback((node: TreeNodeType, checked: boolean, updatedCheckedNodes: { [key: string]: boolean }) => {
     updatedCheckedNodes[node.id] = checked;
     node.isChecked = checked;
     if (node.children) {
       node.children.forEach(child => updateNodeSelection(child, checked, updatedCheckedNodes));
     }
-  };
+  }, []);
+  
 
 
   const handleSelect = useCallback((node: TreeNodeType, checked: boolean) => {
